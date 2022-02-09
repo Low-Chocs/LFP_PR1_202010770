@@ -1,5 +1,5 @@
 def __init__(self):
     h=0
 
-def cargarInstrucciones():
+def analizar():
     print("Opcion 4 Jija")
