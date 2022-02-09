@@ -1,7 +1,4 @@
 from  tkinter import filedialog
 
-def __init__(self):
-    h=0
-
 def cargarInstrucciones():
-    print("Opcion 2 Jija")
+    prueba=filedialog.askopenfilename(title="Select A file")
