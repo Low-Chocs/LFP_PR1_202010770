@@ -3,14 +3,18 @@ from tkinter import filedialog
 from io import open
 from producto import producto as newProduct
 
-productList=[]
+productList = []
+
+
 def loadData():
     prueba = filedialog.askopenfilename(title="Select A file")
     with open(prueba, "r") as archivo:
 
         ver = archivo.read()
         archivo.close()
+    monthYear(ver)
     readFile(ver)
+    showData()
 
 
 def readFile(fileContent):
@@ -36,7 +40,7 @@ def readValues(word):
         if(word[char] == ","):
             count += 1
             continue
-        elif(word[char] != "\"" and count==0):
+        elif(word[char] != "\"" and count == 0):
             producto += word[char]
             continue
         elif(word != " " and count == 1):
@@ -45,11 +49,36 @@ def readValues(word):
         elif(word != " " and count == 2):
             quantity += word[char]
             continue
+    productList.append(newProduct(spelling(producto), price, quantity))
 
-    print("El producto es: "+producto+" Con ventas de: " +
-          str(price) + " Con la cantidad de: "+str(quantity))
-    productList.append(newProduct(producto, price, quantity))
-    
-    
 
+# Function with the correct writing
+def spelling(word):
+    correctWord = word[0].upper()
+    for char in range(1, len(word)):
+        correctWord += word[char].lower()
+    return correctWord
+
+
+def showData():
+    for data in productList:
+        print("El producto es: "+data.getProduct()+" Con ventas de: " +
+              data.getPrice() + " Con la cantidad de: "+data.getQuantity())
+
+
+def monthYear(word):
+    count = 0
+    month = ""
+    year = ""
+    for char in word:
+        if(char != ":" and count == 0 and char != " "):
+            month += char
+        if(char == ":"):
+            count = 1
+        if(char != ":" and count == 1 and char != " " and char!="="):
+            year += char
+        if(char == "="):
+            print("El mes es: "+spelling(month))
+            print("El año es: "+year)
+            break
 
