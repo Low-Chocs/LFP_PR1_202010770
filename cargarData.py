@@ -4,6 +4,8 @@ from io import open
 from producto import producto as newProduct
 
 productList = []
+monthYearList=[]
+
 
 
 def loadData():
@@ -14,7 +16,9 @@ def loadData():
         archivo.close()
     monthYear(ver)
     readFile(ver)
-    showData()
+
+    return productList
+
 
 
 def readFile(fileContent):
@@ -60,10 +64,12 @@ def spelling(word):
     return correctWord
 
 
-def showData():
-    for data in productList:
-        print("El producto es: "+data.getProduct()+" Con ventas de: " +
-              data.getPrice() + " Con la cantidad de: "+data.getQuantity())
+def showData(list):
+    print("El mes es: "+productList[0])
+    print("El año es: "+productList[1])
+    for data in range(2,len(list)):
+        print("El producto es: "+list[data].getProduct()+" Con ventas de: " +
+              list[data].getPrice() + " Con la cantidad de: "+list[data].getQuantity())
 
 
 def monthYear(word):
@@ -78,7 +84,8 @@ def monthYear(word):
         if(char != ":" and count == 1 and char != " " and char!="="):
             year += char
         if(char == "="):
-            print("El mes es: "+spelling(month))
-            print("El año es: "+year)
+            productList.append(spelling(month))
+            productList.append(year)
             break
+
 

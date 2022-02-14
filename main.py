@@ -18,7 +18,8 @@ while(opcion!=5):
     if opcion < 1 or opcion > 5:
         print("Ingrese un valor entre 1 y 5")
     elif opcion ==1:
-        cargarData.loadData()
+        hola = cargarData.loadData()
+        cargarData.showData(hola)
     elif opcion ==2:
         cargarInstrucciones.cargarInstrucciones()
     elif opcion==3:
