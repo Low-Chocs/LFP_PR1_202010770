@@ -4,6 +4,7 @@ import analizar
 import reportes
 
 opcion=0
+prueba=0
 
 while(opcion!=5):
     print("El gran menú \n 1. Cargar Data \n 2. Cargar instrucciones\n"+
@@ -20,9 +21,18 @@ while(opcion!=5):
     elif opcion ==1:
         hola = cargarData.loadData()
         cargarData.showData(hola)
+        if len(hola)>0:
+            prueba+=1
+
     elif opcion ==2:
-        cargarInstrucciones.cargarInstrucciones()
+        hola2=cargarInstrucciones.cargarInstrucciones()
+        if len(hola2)>0:
+            prueba+=1
+
     elif opcion==3:
-        analizar.analizar()
+        if prueba>1:
+            analizar.analizar()
+        else:
+            print("Por favor, verifica que hayas completado la parte 1 y 2 correctamente")
     elif opcion==4:
         reportes.reportes()
