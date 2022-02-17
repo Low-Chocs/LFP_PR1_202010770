@@ -10,6 +10,7 @@ monthYearList=[]
 
 def loadData():
     prueba = filedialog.askopenfilename(title="Select A file")
+    print(prueba)
     with open(prueba, "r") as archivo:
 
         ver = archivo.read()
@@ -69,7 +70,8 @@ def showData(list):
     print("El año es: "+productList[1])
     for data in range(2,len(list)):
         print("El producto es: "+list[data].getProduct()+" Con ventas de: " +
-              list[data].getPrice() + " Con la cantidad de: "+list[data].getQuantity())
+              list[data].getPrice() + " Con la cantidad de: "+list[data].getQuantity()
+              +" Y ventas de: "+str(list[data].getSales()))
 
 
 def monthYear(word):

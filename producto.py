@@ -4,6 +4,7 @@ class producto:
         self.product=product
         self.price=price
         self.quantity=quantity
+        self.sales=float(price)*int(quantity)
     
     def getPrice(self):
         return self.price
@@ -13,3 +14,6 @@ class producto:
     
     def getQuantity(self):
         return self.quantity
+
+    def getSales(self):
+        return self.sales

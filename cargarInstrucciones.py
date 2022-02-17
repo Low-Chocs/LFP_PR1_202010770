@@ -1,94 +1,94 @@
-from tkinter import filedialog
+from tkinter import N, filedialog
 from cargarData import spelling
+import re
 
 instructionList = []
-
+instructionDiccionary={}
 
 def cargarInstrucciones():
     instructionList.clear()
     prueba = filedialog.askopenfilename(title="Select A file")
     with open(prueba, "r") as archivo:
-
         ver = archivo.read()
+        ver = ver.lower()
+        print(ver)
         archivo.close()
-    readFile(ver)
-    return instructionList
+    analizar(ver)
+    return instructionDiccionary
 
 
-
-
-def readFile(fileContent):
-    for char in range(len(fileContent)):
-        if(fileContent[char]=="¿"):
-            readString(fileContent, char)
-            break
-        
-
-
-def readString(fileContent, number):
-    comma=0
+def analizar(text):
     name=""
     graph=""
     title=""
     titleX=""
     titleY=""
-    num=0
-    for char in range(number, len(fileContent)):
 
-        if(fileContent[char]=="?"):
-            break
+    try:
+        nombreInstruccion= re.search("nombre:",text)
+        for char in range(nombreInstruccion.end(),len(text)):
+            if text[char]=="," or text[char]=="?" or text[char]=="\n":
+                instructionList.append(name)
+                instructionDiccionary["Nombre"]=spelling(name)
+                break
+            if text[char]!="\"" and text[char]!=" ":
+                name+=text[char]
+    except:
+        print("El nombre no fue ingresado") 
 
-        if(comma ==0 and fileContent[char]=="\"" and fileContent[char]!=" "):
-            for char2 in range(char+1, len(fileContent)):
-                if(fileContent[char2]=="\"" or fileContent[char2]=="," ):
-                    comma=1
-                    instructionList.append(spelling(name))
-                    print(instructionList[0])
-                    num=char2
-                    break
-                name+=fileContent[char2]
+    try:
+        nombreInstruccion= re.search("grafica:",text)
+        for char in range(nombreInstruccion.end(),len(text)):
+            if text[char]=="," or text[char]=="?" or text[char]=="\n":
+                instructionList.append(graph)
+                instructionDiccionary["Grafica"]=spelling(graph)
+                break
+            if text[char]!="\"" and text[char]!=" ":
+                graph+=text[char]
+    except:
+        print("El tipo de grafica no fue ingresado")
         
-        if(comma ==1 and fileContent[char]=="\"" and fileContent[char]!=" " and num<char):
-            for char2 in range(char+1, len(fileContent)):
-                if(fileContent[char2]=="\"" or fileContent[char2]=="," ):
-                    comma=2
-                    instructionList.append(spelling(graph))
-                    print(instructionList[1])
-                    num=char2
-                    break
-                graph+=fileContent[char2]        
-
-        if(comma ==2 and fileContent[char]=="\"" and fileContent[char]!=" " and num<char):
-            for char2 in range(char+1, len(fileContent)):
-                if(fileContent[char2]=="\"" or fileContent[char2]=="," ):
-                    comma=3
-                    instructionList.append(spelling(title))
-                    print(instructionList[2])
-                    num=char2
-                    break
-                title+=fileContent[char2]  
-        
-        if(comma ==3 and fileContent[char]=="\"" and fileContent[char]!=" "and num<char):
-            for char2 in range(char+1, len(fileContent)):
-                if(fileContent[char2]=="\"" or fileContent[char2]=="," ):
-                    comma=4
-                    instructionList.append(spelling(titleX))
-                    print(instructionList[3])
-                    num=char2
-                    break
-                titleX+=fileContent[char2]
+    try:
+        nombreInstruccion= re.search("titulo:",text)
+        for char in range(nombreInstruccion.end(),len(text)):
+            if text[char]=="," or text[char]=="?" or text[char]=="\n":
+                instructionList.append(graph)
+                instructionDiccionary["Titulo"]=spelling(title)
+                break
+            if text[char]!="\"" and text[char]!=" ":
+                title+=text[char]
+    except:
+        print("No hay titulo")
     
+    try:
+        nombreInstruccion= re.search("titulox:",text)
+        for char in range(nombreInstruccion.end(),len(text)):
+            if text[char]=="," or text[char]=="?" or text[char]=="\n":
+                instructionList.append(titleX)
+                instructionDiccionary["TituloX"]=spelling(titleX)
+                break
+            if text[char]!="\"" and text[char]!=" ":
+                titleX+=text[char]
+    except:
+        print("No hay titulo en x")
 
-        if(comma ==4 and fileContent[char]=="\"" and fileContent[char]!=" " and num<char):
-            for char2 in range(char+1, len(fileContent)):
-                if(fileContent[char2]=="\"" or fileContent[char2]=="," ):
-                    comma=5
-                    instructionList.append(titleY)
-                    print(instructionList[4])
-                    num=char2
-                    break
-                titleY+=fileContent[char2]
-          
+    try:
+        nombreInstruccion= re.search("tituloy:",text)
+        for char in range(nombreInstruccion.end(),len(text)):
+            if text[char]=="," or text[char]=="?" or text[char]=="\n":
+                instructionList.append(titleY)
+                instructionDiccionary["TituloY"]=spelling(titleY)
+                print(instructionDiccionary["TituloY"])
+                break
+            if text[char]!="\"" and text[char]!=" ":
+                titleY+=text[char]
+    except:
+        print("No hay titulo en y")
+
+    for word in text:
+        if(word=="?"):
+            return print("Has leido todo")
+
 
 
 

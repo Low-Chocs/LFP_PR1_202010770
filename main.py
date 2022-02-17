@@ -26,13 +26,11 @@ while(opcion!=5):
 
     elif opcion ==2:
         hola2=cargarInstrucciones.cargarInstrucciones()
+        print(hola2)
         if len(hola2)>0:
             prueba+=1
 
     elif opcion==3:
-        if prueba>1:
-            analizar.analizar()
-        else:
-            print("Por favor, verifica que hayas completado la parte 1 y 2 correctamente")
+        analizar.analizar(hola, hola2)
     elif opcion==4:
         reportes.reportes()
