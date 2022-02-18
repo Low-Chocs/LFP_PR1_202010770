@@ -28,7 +28,6 @@ def analizar(text):
         nombreInstruccion= re.search("nombre:",text)
         for char in range(nombreInstruccion.end(),len(text)):
             if text[char]=="," or text[char]=="?" or text[char]=="\n":
-                instructionList.append(name)
                 instructionDiccionary["Nombre"]=spelling(name)
                 break
             if text[char]!="\"" and text[char]!=" ":
@@ -40,7 +39,6 @@ def analizar(text):
         nombreInstruccion= re.search("grafica:",text)
         for char in range(nombreInstruccion.end(),len(text)):
             if text[char]=="," or text[char]=="?" or text[char]=="\n":
-                instructionList.append(graph)
                 instructionDiccionary["Grafica"]=spelling(graph)
                 break
             if text[char]!="\"" and text[char]!=" ":
@@ -52,37 +50,38 @@ def analizar(text):
         nombreInstruccion= re.search("titulo:",text)
         for char in range(nombreInstruccion.end(),len(text)):
             if text[char]=="," or text[char]=="?" or text[char]=="\n":
-                instructionList.append(graph)
-                instructionDiccionary["Titulo"]=spelling(title)
+                title=title.upper()
+                instructionDiccionary["Titulo"]=title
                 break
-            if text[char]!="\"" and text[char]!=" ":
+            if text[char]!="\"":
                 title+=text[char]
     except:
+        instructionDiccionary["Titulo"]=None
         print("No hay titulo")
     
     try:
         nombreInstruccion= re.search("titulox:",text)
         for char in range(nombreInstruccion.end(),len(text)):
             if text[char]=="," or text[char]=="?" or text[char]=="\n":
-                instructionList.append(titleX)
                 instructionDiccionary["TituloX"]=spelling(titleX)
                 break
             if text[char]!="\"" and text[char]!=" ":
                 titleX+=text[char]
     except:
+        instructionDiccionary["TituloX"]=None
         print("No hay titulo en x")
 
     try:
         nombreInstruccion= re.search("tituloy:",text)
         for char in range(nombreInstruccion.end(),len(text)):
             if text[char]=="," or text[char]=="?" or text[char]=="\n":
-                instructionList.append(titleY)
                 instructionDiccionary["TituloY"]=spelling(titleY)
                 print(instructionDiccionary["TituloY"])
                 break
             if text[char]!="\"" and text[char]!=" ":
                 titleY+=text[char]
     except:
+        instructionDiccionary["TituloY"]=None
         print("No hay titulo en y")
 
     for word in text:

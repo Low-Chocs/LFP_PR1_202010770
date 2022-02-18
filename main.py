@@ -5,6 +5,8 @@ import reportes
 
 opcion=0
 prueba=0
+dataList=[]
+instructions={}
 
 while(opcion!=5):
     print("El gran menú \n 1. Cargar Data \n 2. Cargar instrucciones\n"+
@@ -18,19 +20,34 @@ while(opcion!=5):
     
     if opcion < 1 or opcion > 5:
         print("Ingrese un valor entre 1 y 5")
+
     elif opcion ==1:
-        hola = cargarData.loadData()
-        cargarData.showData(hola)
-        if len(hola)>0:
+        try:
+            dataList.clear()
+            dataList = cargarData.loadData()
+            cargarData.showData(dataList)
+        except:
+            dataList.clear()
+            print("Formato no soportado")
+            continue
+
+        if len(dataList)>0:
             prueba+=1
 
     elif opcion ==2:
-        hola2=cargarInstrucciones.cargarInstrucciones()
-        print(hola2)
-        if len(hola2)>0:
+        try:
+            instructions.clear()
+            instructions=cargarInstrucciones.cargarInstrucciones()
+            print(instructions)
+        except:
+            instructions.clear()
+            print("Formato no soportado")
+            continue
+        
+        if len(instructions)>0:
             prueba+=1
 
     elif opcion==3:
-        analizar.analizar(hola, hola2)
+        analizar.analizar(dataList, instructions)
     elif opcion==4:
         reportes.reportes()

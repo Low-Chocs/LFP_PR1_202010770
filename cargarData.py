@@ -1,20 +1,20 @@
+from calendar import month
 from itertools import product
 from tkinter import filedialog
 from io import open
 from producto import producto as newProduct
 
 productList = []
-monthYearList=[]
-
-
 
 def loadData():
+    productList.clear()
     prueba = filedialog.askopenfilename(title="Select A file")
     print(prueba)
+    
     with open(prueba, "r") as archivo:
-
         ver = archivo.read()
         archivo.close()
+
     monthYear(ver)
     readFile(ver)
 
