@@ -13,14 +13,27 @@ def analizar(productList,instructions):
     for i in graphProducts:
         print(i)
     if(instructions["Grafica"]=="Barras"):
-        print("Se realizará una gráfica de barras")
-    if(instructions["Grafica"]=="Líneas"):
+    
+        if(instructions["TituloX"]!=None):
+            pyplot.xlabel(instructions["TituloX"])
+        if(instructions["TituloY"]!=None):
+            pyplot.ylabel(instructions["TituloY"])
+        pyplot.bar(graphProducts, graphSales, width=0.8)
+        pyplot.savefig(instructions["Nombre"]+".png")
+        pyplot.show()
+    if(instructions["Grafica"]=="Lã\xadneas" or instructions["Grafica"]=="Lineas"):
+        if(instructions["TituloX"]!=None):
+            pyplot.xlabel(instructions["TituloX"])
+        if(instructions["TituloY"]!=None):
+            pyplot.ylabel(instructions["TituloY"])
+        pyplot.plot(graphProducts, graphSales)
         print("Se realizará una gráfica de líneas")
+        pyplot.savefig(instructions["Nombre"]+".png")
+        pyplot.show()
     if(instructions["Grafica"]=="Pie" or instructions["Grafica"]=="Pastel"):
         pyplot.pie(graphSales, autopct='%1.1f%%', labels=graphProducts)
-        pyplot.savefig("hola.png")
+        pyplot.savefig(instructions["Nombre"]+".png")
         pyplot.show()
-
 
 def graphProduct(productList):
     for char in range(2,len(productList)):

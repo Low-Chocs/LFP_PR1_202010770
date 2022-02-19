@@ -1,9 +1,4 @@
-def reportes(dataList):
-    for i in range(2, len(dataList)):
-        print(dataList[i].getSales())
-    ordenamientoBurbuja(dataList)
-
-    text='''<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -29,12 +24,12 @@ def reportes(dataList):
     </tr>
   </thead>
   <tbody>
-  {'''
-    for object in range(2,len(dataList)):'''}
+  
+    {for object in range(2,len(dataList)):}
         
     <tr>
       <th scope="row">1</th>
-      <td>{'''+dataList[object].getProduct()+'''}></td>
+      <td>{dataList[object].getProduct()}></td>
       <td>dataList[object].getPrice()</td>
       <td>dataList[object].getQuantity()+</td>
       <td>str(dataList[object].getSales())</td>
@@ -53,21 +48,3 @@ def reportes(dataList):
     -->
   </body>
 </html>
-'''
-    file = open("report.html", "w") 
-    file.write(text)
-
-def ordenamientoBurbuja(dataList):
-    dataLen=len(dataList)
-    dataList2=[]
-    for lista in range(2,dataLen):
-        for lista2 in range(2,dataLen-3):
-            if(float(dataList[lista2].getSales())<float(dataList[lista2+1].getSales())):
-                dataList2.append(dataList[lista2])
-                dataList[lista2]=dataList[lista2+1]
-                dataList[lista2+1]=dataList2[0]
-                dataList2.clear()
-    print()
-    print("Lista ordenada")
-    for i in range(2, len(dataList)):
-        print(dataList[i].getSales())

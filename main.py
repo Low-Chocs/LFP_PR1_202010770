@@ -7,6 +7,8 @@ opcion=0
 prueba=0
 dataList=[]
 instructions={}
+boolean1=False
+boolean2=False
 
 while(opcion!=5):
     print("El gran menú \n 1. Cargar Data \n 2. Cargar instrucciones\n"+
@@ -32,7 +34,7 @@ while(opcion!=5):
             continue
 
         if len(dataList)>0:
-            prueba+=1
+            boolean1=True
 
     elif opcion ==2:
         try:
@@ -45,9 +47,22 @@ while(opcion!=5):
             continue
         
         if len(instructions)>0:
-            prueba+=1
+            boolean2=True
 
     elif opcion==3:
-        analizar.analizar(dataList, instructions)
+        if(boolean1 and boolean2):
+            analizar.analizar(dataList, instructions)
+        elif(boolean1 and not boolean2):
+            print("Te hace falta ingresar el archivo .lfp (Opcion 2)")
+        elif(not boolean1 and boolean2):
+            print("Te hace falta ingresar el archivo .data (Opcion 1)")
+        else:
+            print("Ningún archivo ha sido registrado")
     elif opcion==4:
-        reportes.reportes()
+        if(boolean1):
+        
+            reportes.reportes(dataList)
+        else:
+            print("Por favor ingresa un archivo en de tipo .data en la (opcion 1)")
+
+            
