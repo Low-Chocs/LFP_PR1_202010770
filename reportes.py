@@ -1,9 +1,14 @@
-def reportes(dataList):
-    for i in range(2, len(dataList)):
-        print(dataList[i].getSales())
-    ordenamientoBurbuja(dataList)
+import os
+listaProductos=[]
+listaPrecios=[]
+listaCantidad=[]
+listaVentas=[]
 
-    text='''<!doctype html>
+def reportes(dataList):
+    ordenamientoBurbuja(dataList)
+      
+    text=f'''
+    <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -17,31 +22,22 @@ def reportes(dataList):
   </head>
   <body>
     <h1>Tabla con los productos ordernados de mayor a menor</h1>
+    <h4>Luis Mariano Moreira Garcia 202010770</h4>
     
         <table class="table">
   <thead>
     <tr>
+    <th scope="col">Puesto</th>
       <th scope="col">Producto</th>
       <th scope="col">Precio</th>
       <th scope="col">Cantidad</th>
        <th scope="col">Ventas</th>
-      <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
-  {'''
-    for object in range(2,len(dataList)):'''}
-        
-    <tr>
-      <th scope="row">1</th>
-      <td>{'''+dataList[object].getProduct()+'''}></td>
-      <td>dataList[object].getPrice()</td>
-      <td>dataList[object].getQuantity()+</td>
-      <td>str(dataList[object].getSales())</td>
-    </tr>
-  </tbody>
-</table>
-    <!-- Optional JavaScript; choose one of the two! -->
+'''
+    mensaje2=f''''
+    </table>
+  <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -52,10 +48,28 @@ def reportes(dataList):
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
   </body>
-</html>
-'''
+  </html>
+  '''
+
     file = open("report.html", "w") 
+    #Primera parte del html
     file.write(text)
+
+    #Los datos que se van a llenar en la tabla
+    for i in range(2,len(dataList)):
+      file.write("<tbody><tr><th scope=\"row\">"+str(i-1)+"</th>")
+      file.write("<td>"+str(dataList[i].getProduct())+"</td>"
+      "<td>"+str(dataList[i].getPrice())+"</td>"
+      "<td>"+str(dataList[i].getQuantity())+"</td>"
+      "<td>"+str(dataList[i].getSales())+"</td>")
+      file.write("</tr></tbody>")
+
+    #Parte final de html
+    file.write(mensaje2)
+    file.close()
+    os.startfile("report.html")
+
+
 
 def ordenamientoBurbuja(dataList):
     dataLen=len(dataList)
@@ -71,3 +85,5 @@ def ordenamientoBurbuja(dataList):
     print("Lista ordenada")
     for i in range(2, len(dataList)):
         print(dataList[i].getSales())
+
+
