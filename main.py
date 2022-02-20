@@ -9,7 +9,10 @@ dataList=[]
 instructions={}
 boolean1=False
 boolean2=False
+#Código hecho por Luis Mariano Moreira García 202010770
+#Trato de evitar los comentarios, pero deseo demostrar mi autoría 
 
+#Menú
 while(opcion!=5):
     print("El gran menú \n 1. Cargar Data \n 2. Cargar instrucciones\n"+
     " 3. Analizar \n 4. Reportes \n 5. Salir\n")
@@ -50,6 +53,7 @@ while(opcion!=5):
             boolean2=True
 
     elif opcion==3:
+        #Se analiza si no se han ingresado los documentos .data o .lfp
         if(boolean1 and boolean2):
             analizar.analizar(dataList, instructions)
         elif(boolean1 and not boolean2):

@@ -5,18 +5,21 @@ import re
 instructionList = []
 instructionDiccionary={}
 
+#Devuelve un diccionario con su palabra clave y con objeto
 def cargarInstrucciones():
     instructionList.clear()
     prueba = filedialog.askopenfilename(title="Select A file")
     with open(prueba, "r") as archivo:
         ver = archivo.read()
+#Manera para volver case insensitive el programa
+#Al momento de realizar el código no tenía conocimiento de que re, tenía una función propia
         ver = ver.lower()
         print(ver)
         archivo.close()
     analizar(ver)
     return instructionDiccionary
 
-
+#Analiza el texto, mediante regex busca las palabras clave
 def analizar(text):
     name=""
     graph=""

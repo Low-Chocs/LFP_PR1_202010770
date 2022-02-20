@@ -4,9 +4,10 @@ listaPrecios=[]
 listaCantidad=[]
 listaVentas=[]
 
+#Función que genera los reportes
 def reportes(dataList):
     ordenamientoBurbuja(dataList)
-      
+#Primera parte del archivo html
     text=f'''
     <!doctype html>
 <html lang="en">
@@ -35,6 +36,7 @@ def reportes(dataList):
     </tr>
   </thead>
 '''
+#Parte final del archivo de html
     mensaje2=f''''
     </table>
   <!-- Optional JavaScript; choose one of the two! -->
@@ -52,6 +54,7 @@ def reportes(dataList):
   '''
 
     file = open("report.html", "w") 
+
     #Primera parte del html
     file.write(text)
 
@@ -70,7 +73,7 @@ def reportes(dataList):
     os.startfile("report.html")
 
 
-
+#Se ordena de mayor a menor
 def ordenamientoBurbuja(dataList):
     dataLen=len(dataList)
     dataList2=[]
