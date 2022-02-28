@@ -69,4 +69,7 @@ while(opcion!=5):
         else:
             print("Por favor ingresa un archivo en de tipo .data en la (opcion 1)")
 
+
+    print("Mostrandole a tony ")
+
             
